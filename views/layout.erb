@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>iPiggy | <%= @title %></title>
+  <link rel="stylesheet" href="/css/application.css" />
+</head>
+<body>
+<div id="app">
+  <div id="small_header">
+    <h2><span class="blue small_logo">iPiggy</span></h2>
+  </div>
+  <div id="content">
+    <%= yield %>
+  </div>
+  <div id="footer">
+    <p> This app is intended for training purposes only. </p> 
+    <p> &copy <%= Time.now.year %> iPiggy. All rights reserved. </p> 
+    <p> <a href="/contact_us">Contact Us</a> </p>
+  </div>
+</div>
+</body>
+</html>

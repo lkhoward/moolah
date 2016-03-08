@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: #555555;
+    font: 12px Arial,Helvetica,sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+form {
+    margin-left: 20px;
+}
+
+#app {
+    position: relative;
+    border: 10px solid black;
+    width: 325px;
+    /*height: 500px;*/
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+    background: white;
+    padding: 5px;
+    text-align: center;
+}
+
+#small_header {
+    background: url("/images/piggy.jpg") 10px 2px no-repeat;
+    background-size: contain;
+    min-height: 35px;
+    font-size: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 6px;
+    position: relative;
+}
+
+#content {
+    padding-top: 10px;
+    /*padding-bottom: 65px;*/
+    overflow: auto;
+    height: 400px;
+}
+
+#footer {
+    background: #ededed;
+    width: 100%;
+    height: 65px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#home {
+    font-size: 24px;
+    padding-top: 20px;
+    width: 100%;
+    min-height: 325px;
+}
+
+#home_buttons {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#app {
+    border: 1px solid black;
+    width: 325px;
+    height: 500px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#footer {
+    text-align: center;
+    padding-top: 10px;
+    line-height: 10px;
+}
+
+#footer a:link {
+    font-size: 11px;
+    color:  #0404B4;
+    text-decoration: underline;
+}
+
+#footer a:visited {
+    color:  #0404B4;
+    text-decoration: underline;
+}
+
+#footer a:hover {
+    color:  #0404B4;
+    text-decoration: underline;
+}
+
+#footer a:active {
+    color:  #0404B4;
+    text-decoration: underline;
+}
+
+/*.floatL {*/
+/*float: left*/
+/*}*/
+
+/*.floatR {*/
+    /*float: right*/
+/*}*/
+
+.page_title {
+    margin-bottom: 10px;
+}
+
+.textbox {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #848484;
+    outline: 0;
+    height: 35px;
+    width: 250px;
+    font-size: 14px;
+    padding-left: 16px;
+    margin-bottom: 10px;
+}
+
+.left-40 {
+    margin-left: 40px;
+}
+
+.left-20 {
+    margin-left: 20px;
+}
+
+.top-20 {
+    margin-top: 20px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blue {
+    color: #205081;
+}
+
+.large_logo {
+    font: 38px Arial,Helvetica,sans-serif;
+    font-weight: bold;
+}
+
+.big_logo {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.small_logo {
+    font: 24px Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    padding-left: 70px;
+}
+
+.app-button, .app-button:visited, a.app-button {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 3.01px;
+    color: #333;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 14px;
+    font-variant: normal;
+    font-weight: 400;
+    height: 2.14em;
+    line-height: 1.4285;
+    margin: 0;
+    padding: 4px 10px;
+    text-decoration: none;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+input[type=button] {
+    -webkit-appearance: button;
+}
+.app-button:focus, form.aui .button:focus, form.aui .cancel:focus {
+    outline: 1px dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: 1px;
+}
+.app-button-subtle.app-button:focus, .app-button-subtle.app-button:hover, .app-button:focus, .app-button:hover {
+    background: #e9e9e9;
+    border-color: #999;
+    color: #000;
+    text-decoration: none;
+}
+.app-button.app-button-primary, .app-button.app-button-primary:visited {
+    background: #3572b0;
+    border-color: transparent;
+    color: #fff;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+}
+.app-button.app-button-primary:focus, .app-button.app-button-primary:hover {
+    background: #2a67a5;
+    border-color: transparent;
+    color: #fff;
+}
+
+.activity {
+    padding: 5px 5px 5px 5px;
+    margin-right: 20px;
+    border-bottom: 1px solid lightslategray;
+}
+
+#recent_activity {
+    padding-top: 10px;
+}
+
+.bold {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.green {
+    color: #60b044;
+}
+
+#balance {
+    margin-bottom: 10px;
+}

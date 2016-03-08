@@ -1,0 +1,22 @@
+<% @user = User.find(session[:user][:id]) %>
+<div class="left-20">
+  <div id="balance">
+    <span class="bold blue">My Balance: </span><span class="bold green"><%= to_dollars(@user.account.balance) %></span>
+  </div>
+  <% if session[:error] %> 
+      <div><%= styled_flash %></div> 
+  <% end %>
+  <form id="send_payment" action="/send_payment" method="post"> 
+    <h2 class="page_title">Send a Payment</h2>
+    <p> 
+      <input name="email" type="text" class="textbox" placeholder="Email Address" /> 
+    </p> 
+    <p> 
+      <input name="amount" type="text" class="textbox" placeholder="Amount" /> 
+    </p> 
+    <p>
+      <input class="app-button" type="submit" value="Send Payment" /> 
+    </p>
+  </form> 
+</div>
+

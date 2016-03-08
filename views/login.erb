@@ -1,0 +1,18 @@
+<form id="login_form" action="/login" method="post"> 
+  <h2 class="page_title">Login</h2>
+  <% if session[:error] %> 
+      <div class="msg_error"><%= styled_flash %></div> 
+  <% end %> 
+  <p> 
+    <input name="email" type="text" class="textbox" placeholder="Email Address" /> 
+  </p> 
+  <p> 
+    <input name="password" type="password" class="textbox" placeholder="Password" /> 
+  </p> 
+  <p>
+    <input class="app-button" type="submit" value="Submit" /> 
+  </p>
+  <p class="top-20">
+    or <a href="/sign_up">Sign Up</a>
+  </p>
+</form> 
