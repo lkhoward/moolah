@@ -1,5 +1,5 @@
 <% @user = User.find(session[:user][:id]) %>
-<div id="balance">
+<div id="balance" class="top-20">
   <span class="bold blue">My Balance: </span><span class="bold"><%= to_dollars(@user.balance) %></span>
 </div>
 <div><%= flash[:message] %></div> 
