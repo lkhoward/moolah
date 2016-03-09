@@ -99,6 +99,12 @@ post '/sign_up' do
   redirect '/login'
 end
 
+get '/logout' do
+  session[:authenticated] = false
+  session[:user] = nil
+  redirect '/'
+end
+
 
 
 
@@ -115,32 +121,12 @@ get '/users' do
 end
 
 
-#
-# get '/logout' do
-#   session[:authenticated] = false
-#   session[:user] = nil
-#   redirect '/login'
-# end
-#
 
-#
-# get '/contact_us' do
-#   @title = 'Contact Us'
-#   erb :contact_us
-# end
-#
+
+
 # get '/profile' do
 #   redirect '/login' unless session[:authenticated]
 #   @title = 'My Profile'
 #   erb :profile
 # end
-#
 
-
-
-
-#
-# post '/contact_us' do
-#
-# end
-#
