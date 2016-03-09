@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309124859) do
-
-  create_table "accounts", force: true do |t|
-    t.integer  "user_id"
-    t.float    "balance"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20160309135101) do
 
   create_table "transactions", force: true do |t|
     t.string   "from_email"
