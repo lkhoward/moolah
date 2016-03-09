@@ -105,7 +105,11 @@ get '/logout' do
   redirect '/'
 end
 
-
+get '/profile' do
+  redirect '/login' unless session[:authenticated]
+  @title = 'My Profile'
+  erb :profile
+end
 
 
 
@@ -124,9 +128,5 @@ end
 
 
 
-# get '/profile' do
-#   redirect '/login' unless session[:authenticated]
-#   @title = 'My Profile'
-#   erb :profile
-# end
+
 

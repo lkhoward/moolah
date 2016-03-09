@@ -1,6 +1,7 @@
 <% @user = User.find(session[:user][:id]) %>
 <div id="balance" class="top-20">
-  <span class="bold blue">My Balance: </span><span class="bold"><%= to_dollars(@user.balance) %></span>
+  <span class="welcome">Welcome, <a href="/profile"><%= @user.name %></a></span>
+  <span class="bold blue">Your Balance: </span><span class="bold"><%= to_dollars(@user.balance) %></span>
 </div>
 <div><%= flash[:message] %></div> 
 <form id="send_payment" action="/send_payment" method="post"> 
