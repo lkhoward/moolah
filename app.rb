@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/contrib'
+require 'shotgun'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'factory_girl'
@@ -9,9 +9,15 @@ Dir['./factories/*.rb'].each { |file| require file }
 
 enable :sessions
 set :session_secret, '^hzh@$5281'
-set :database, 'sqlite3:///piggy.db'
+set :database, 'sqlite3:///moolah.db'
 
 helpers do
+
+  def flash_login_error
+    session[:error] = true
+    flash[:error] = 'Username/Password incorrect. Please try again.'
+    redirect '/login'
+  end
 
   def to_dollars(number)
     dollars = "$#{number.to_s.reverse.gsub(%r{([0-9]{3}(?=([0-9])))}, "\\1,").reverse}"
@@ -26,6 +32,7 @@ helpers do
     recipient = User.find_or_create_by_email(email)
     unless recipient.password
       recipient.password = Faker::Internet.password(8, 12, true, true)
+      recipient.balance = 0.0
       recipient.save!
     end
     recipient
@@ -33,16 +40,8 @@ helpers do
 
 end
 
-get '/activities' do
-  erb :'/admin/activities', layout: false
-end
-
-get '/users' do
-  erb :'/admin/users', layout: false
-end
-
 get '/' do
-  erb :home, layout: false
+  redirect '/login'
 end
 
 get '/login' do
@@ -50,26 +49,16 @@ get '/login' do
   erb :login
 end
 
-get '/logout' do
-  session[:authenticated] = false
-  session[:user] = nil
-  redirect '/login'
-end
-
-get '/sign_up' do
-  @title = 'Sign Up'
-  erb :sign_up
-end
-
-get '/contact_us' do
-  @title = 'Contact Us'
-  erb :contact_us
-end
-
-get '/profile' do
-  redirect '/login' unless session[:authenticated]
-  @title = 'My Profile'
-  erb :profile
+post '/login' do
+  session[:user] = User.find_by_email(params[:email])
+  if session[:user].nil?
+    flash_login_error
+  elsif params[:password].eql?(session[:user][:password])
+    session[:authenticated] = true
+    redirect '/account'
+  else
+    flash_login_error
+  end
 end
 
 get '/account' do
@@ -78,43 +67,80 @@ get '/account' do
   erb :account
 end
 
-get '/activity' do
-  redirect '/login' unless session[:authenticated]
-  @title = 'Activity'
-  erb :activity
+post '/send_payment' do
+  recipient = find_or_create_user(params[:email])
+  recipient.credit(params[:amount].to_f)
+  session[:user].debit(params[:amount].to_f)
+  [ recipient, session[:user] ].each { |user| user.save! }
+  Transaction.create(from_email: session[:user][:email],
+                     to_email: recipient.email,
+                     amount: params[:amount].to_f)
+  flash[:message] = 'Payment Sent.'
+  redirect "/account"
 end
 
-post '/login' do
-  session[:user] = User.find_by_email(params[:email])
-  if params[:password].eql?(session[:user][:password])
-    session[:authenticated] = true
-    redirect "/account"
-  else
-    session[:error] = true
-    flash[:error] = 'Username/Password incorrect. Please try again.'
-    redirect '/login'
-  end
+get '/transactions' do
+  redirect '/login' unless session[:authenticated]
+  @title = 'Transactions'
+  erb :transactions
+end
+
+get '/sign_up' do
+  @title = 'Sign Up'
+  erb :sign_up
 end
 
 post '/sign_up' do
-  User.create(email: params[:email], name: params[:name], phone: params[:phone], password: params[:password])
+  User.create(email: params[:email], name: params[:name],
+              phone: params[:phone], password: params[:password],
+              balance: 0.0)
   session[:new_user] = true
   flash[:message] = 'Thanks for Signing Up! Please log in.'
   redirect '/login'
 end
 
-post '/contact_us' do
 
+
+
+
+
+
+
+get '/transactions' do
+  erb :'/admin/transactions', layout: false
 end
 
-post '/send_payment' do
-  recipient = find_or_create_user(params[:email])
-  recipient.credit(params[:amount].to_f)
-  session[:user].debit(params[:amount].to_f)
-  recipient.save!
-  session[:user].save!
-  Activity.create(from_account_id: session[:user][:id], to_account_id: recipient.id,
-                  transaction_type: 'D', amount: params[:amount].to_f)
-  flash[:message] = 'Payment Sent.'
-  redirect "/account"
+get '/users' do
+  erb :'/admin/users', layout: false
 end
+
+
+#
+# get '/logout' do
+#   session[:authenticated] = false
+#   session[:user] = nil
+#   redirect '/login'
+# end
+#
+
+#
+# get '/contact_us' do
+#   @title = 'Contact Us'
+#   erb :contact_us
+# end
+#
+# get '/profile' do
+#   redirect '/login' unless session[:authenticated]
+#   @title = 'My Profile'
+#   erb :profile
+# end
+#
+
+
+
+
+#
+# post '/contact_us' do
+#
+# end
+#

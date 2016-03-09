@@ -1,5 +1,5 @@
 <form id="login_form" action="/login" method="post"> 
-  <h2 class="page_title">Login</h2>
+  <h2 class="page_title">Login to Your Account</h2>
   <% if session[:error] %> 
       <div class="msg_error"><%= styled_flash %></div> 
   <% end %> 
@@ -10,9 +10,9 @@
     <input name="password" type="password" class="textbox" placeholder="Password" /> 
   </p> 
   <p>
-    <input class="app-button" type="submit" value="Submit" /> 
+    <input class="app-button" type="submit" value="Login" /> 
   </p>
   <p class="top-20">
-    or <a href="/sign_up">Sign Up</a>
+    Don't have an account?  <a href="/sign_up">Sign Up</a> now!
   </p>
 </form> 

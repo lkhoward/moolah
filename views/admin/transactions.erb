@@ -1,0 +1,19 @@
+<html>
+<body>
+<% @transactions = Transaction.all %>
+<table widih="25%">
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.id %></td>
+        <td><%= transaction.from_email %></td>
+        <td><%= transaction.to_email %></td>
+        <td><%= transaction.amount %></td>
+      </tr>
+
+  <% end %>
+</table>
+</body>
+</html>
+
+
+

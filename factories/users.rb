@@ -14,10 +14,9 @@ FactoryGirl.define do
     balance  { Faker::Commerce.price(100.0..1000.0) }
   end
 
-  factory :activity do
-    from_account_id   { rand(1..10) }
-    to_account_id     { rand(1..10) }
-    transaction_type  { ['C', 'D'].sample }
-    amount            { Faker::Commerce.price(5.0..80.0) }
+  factory :transaction do
+    from_email      { User.find(rand(1..10)).email }
+    to_email        { User.find(rand(1..10)).email }
+    amount          { Faker::Commerce.price(5.0..80.0) }
   end
 end

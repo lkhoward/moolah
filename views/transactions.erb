@@ -1,0 +1,19 @@
+<% @transactions = Transaction.where('from_email = ? or to_email = ?', session[:user][:email], session[:user][:email]) %>
+<div class="left-20">
+  <p><a href="/account">View Account >></a></p>
+  <div id="transactions">
+    <h3>Transactions</h3>
+    <% @transactions.each do |transaction| %>
+        <div class="activity">
+          <% if transaction.to_email.eql?(session[:user][:email]) %>
+              <p>From: <%= transaction.from_email %></p>
+          <% else %>
+              <p>To: <%= transaction.to_email %></p>
+          <% end %>
+          <p>Amount: <%= to_dollars(transaction.amount) %></p>
+          <p>Date: <%= transaction.created_at %></p>
+        </div>
+    <% end %>
+  </div>
+  <p class="top-20"><a href="/account">View Account >></a></p>
+</div>
