@@ -116,11 +116,11 @@ end
 
 
 
-get '/transactions' do
+get '/admin/transactions' do
   erb :'/admin/transactions', layout: false
 end
 
-get '/users' do
+get '/admin/users' do
   erb :'/admin/users', layout: false
 end
 

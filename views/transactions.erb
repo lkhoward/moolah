@@ -1,17 +1,19 @@
-<% @transactions = Transaction.where('from_email = ? or to_email = ?', session[:user][:email], session[:user][:email]) %>
+<% @transactions = Transaction.where('from_email = ? or to_email = ?', session[:user][:email], session[:user][:email]).order(:created_at) %>
 <div class="left-20">
-  <p><a href="/account">View Account >></a></p>
+  <p class="top-20"><a href="/account">View Account >></a></p>
   <div id="transactions">
-    <h3>Transactions</h3>
+    <h2 class="page_title">Transactions</h2>
     <% @transactions.each do |transaction| %>
         <div class="activity">
           <% if transaction.to_email.eql?(session[:user][:email]) %>
-              <p>From: <%= transaction.from_email %></p>
+              <span class="block"><%= transaction.from.name.nil? ? 'UNKNOWN' : transaction.from.name.upcase %><br></span>
+              <span class="block"><%= transaction.from_email %></span>
+              <span class="date"><%= transaction.created_at.strftime('%d/%m/%Y') %></span><span class="amount green"><%= to_dollars(transaction.amount) %></span>
           <% else %>
-              <p>To: <%= transaction.to_email %></p>
+              <span class="block"><%= transaction.to.name.nil? ? 'UNKNOWN' : transaction.to.name.upcase %><br></span>
+              <span class="block"><%= transaction.to_email %></span>
+              <span class="date"><%= transaction.created_at.strftime('%d/%m/%Y') %></span><span class="amount red"><%= to_dollars(transaction.amount) %></span>
           <% end %>
-          <p>Amount: <%= to_dollars(transaction.amount) %></p>
-          <p>Date: <%= transaction.created_at %></p>
         </div>
     <% end %>
   </div>

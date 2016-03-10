@@ -12,4 +12,5 @@ group :development do
   gem 'tux', '0.3.0'
   gem 'factory_girl'
   gem 'faker'
+  gem 'chronic'
 end

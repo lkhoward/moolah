@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone
       t.string :password
       t.string :admin
+      t.float :balance
       t.timestamps
     end
   end
