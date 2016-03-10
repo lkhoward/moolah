@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'shotgun'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'factory_girl'
